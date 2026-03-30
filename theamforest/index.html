@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SP Store Dashboard</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+
+
+</head>
+<body>
+
+<!-- Sidebar -->
+<div class="sidebar">
+    <h2>SP Store</h2>
+    <ul>
+        <li id="home-btn">🏠 Home</li>
+        <li id="product-btn">💊 Medical Products</li>
+        <li>🛒 Orders</li>
+        <li>👤 Customers</li>
+        <li>⚙ Settings</li>
+    </ul>
+</div>
+
+<!-- Main -->
+<div class="main">
+
+    <!-- Header -->
+    <div class="header">
+        <h1>Dashboard</h1>
+        <input type="text" placeholder="Search...">
+    </div>
+
+    <!-- Dashboard Cards -->
+    <div class="content" id="home-section">
+        <div class="card">
+            <h3>Total Products</h3>
+            <p>120</p>
+        </div>
+
+        <div class="card">
+            <h3>Total Orders</h3>
+            <p>80</p>
+        </div>
+
+        <div class="card">
+            <h3>Customers</h3>
+            <p>45</p>
+        </div>
+    </div>
+
+    <!-- Product Section -->
+    <div id="product-section">
+        <h2>Products</h2>
+        <div id="product-list"></div>
+    </div>
+
+</div>
+
+<script>
+// Buttons
+const homeBtn = document.getElementById("home-btn");
+const productBtn = document.getElementById("product-btn");
+
+// Sections
+const homeSection = document.getElementById("home-section");
+const productSection = document.getElementById("product-section");
+
+// Products Data
+
+const products = [
+    {
+        name: "Paracetamol",
+        price: "₹50",
+        image: "https://images.unsplash.com/photo-1584308666744-24d5c474d3b5?w=400"
+    },
+    {
+        name: "Syringe",
+        price: "₹20",
+        image: "https://images.unsplash.com/photo-1581595219315-a187dd40c322?w=400"
+    },
+    {
+        name: "First Aid Kit",
+        price: "₹299",
+        image: "https://images.unsplash.com/photo-1603398938378-e54eab446dde?w=400"
+    }
+];
+const productList = document.getElementById("product-list");
+
+// Show Products
+function showProducts() {
+    productList.innerHTML = "";
+
+    products.forEach((product) => {
+        let div = document.createElement("div");
+        div.classList.add("product-card");
+
+        div.innerHTML = `
+            <img src="${product.image}">
+            <h3>${product.name}</h3>
+            <p>${product.price}</p>
+        `;
+
+        productList.appendChild(div);
+    });
+}
+
+// Navigation
+productBtn.addEventListener("click", () => {
+    homeSection.style.display = "none";
+    productSection.style.display = "block";
+    showProducts();
+});
+
+homeBtn.addEventListener("click", () => {
+    homeSection.style.display = "flex";
+    productSection.style.display = "none";
+});
+</script>
+
+</body>
+</html>
