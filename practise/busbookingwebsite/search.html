@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Buses - QuickBus</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <h1>🚌 QuickBus</h1>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="booking.html">Booking</a></li>
+                <li><a href="food.html">🍕 Food Zone</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="search-main">
+        <!-- Page Title -->
+        <section class="page-title">
+            <h2>Available Buses</h2>
+            <p>Find and book your preferred bus</p>
+        </section>
+
+        <!-- Search Summary -->
+        <section class="search-summary">
+            <h3>🔍 Search Details</h3>
+            <div class="summary-grid">
+                <p><strong>From:</strong> <span id="fromLocation">Lucknow</span></p>
+                <p><strong>To:</strong> <span id="toLocation">Delhi</span></p>
+                <p><strong>Date:</strong> <span id="travelDate">15 Oct 2024</span></p>
+            </div>
+        </section>
+
+        <!-- Bus List -->
+        <section id="busListSection" class="bus-list">
+            <h3>Available Options (3 Buses)</h3>
+            
+            <!-- Bus 1 -->
+            <article class="bus-card" data-bus="0">
+                <div class="bus-header">
+                    <h4>Volvo AC Semi-Sleeper</h4>
+                    <span class="bus-time">10:00 AM</span>
+                </div>
+                <p class="route">Lucknow ➝ Delhi (8h 30m)</p>
+                <div class="status-grid">
+                    <div class="status-item">
+                        <span>Total Seats</span>
+                        <span>40</span>
+                    </div>
+                    <div class="status-item">
+                        <span>Booked</span>
+                        <span id="booked-0">5</span>
+                    </div>
+                    <div class="status-item">
+                        <span>Available</span>
+                        <span id="available-0">35</span>
+                    </div>
+                </div>
+                <p class="price">₹800 <span>per seat</span></p>
+                <button class="book-btn">Select Seats</button>
+            </article>
+
+            <!-- Bus 2 -->
+            <article class="bus-card" data-bus="1">
+                <div class="bus-header">
+                    <h4>AC Sleeper</h4>
+                    <span class="bus-time">08:00 PM</span>
+                </div>
+                <p class="route">Lucknow ➝ Delhi (9h)</p>
+                <div class="status-grid">
+                    <div class="status-item">
+                        <span>Total Seats</span>
+                        <span>40</span>
+                    </div>
+                    <div class="status-item">
+                        <span>Booked</span>
+                        <span id="booked-1">6</span>
+                    </div>
+                    <div class="status-item">
+                        <span>Available</span>
+                        <span id="available-1">34</span>
+                    </div>
+                </div>
+                <p class="price">₹1200 <span>per seat</span></p>
+                <button class="book-btn">Select Seats</button>
+            </article>
+
+            <!-- Bus 3 -->
+            <article class="bus-card" data-bus="2">
+                <div class="bus-header">
+                    <h4>Non-AC Seater</h4>
+                    <span class="bus-time">06:00 AM</span>
+                </div>
+                <p class="route">Lucknow ➝ Delhi (10h)</p>
+                <div class="status-grid">
+                    <div class="status-item">
+                        <span>Total Seats</span>
+                        <span>40</span>
+                    </div>
+                    <div class="status-item">
+                        <span>Booked</span>
+                        <span id="booked-2">3</span>
+                    </div>
+                    <div class="status-item">
+                        <span>Available</span>
+                        <span id="available-2">37</span>
+                    </div>
+                </div>
+                <p class="price">₹500 <span>per seat</span></p>
+                <button class="book-btn">Select Seats</button>
+            </article>
+        </section>
+    </main>
+
+    <!-- Booking Modal -->
+    <div id="bookingModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Select Your Seats</h3>
+                <span class="close-btn" id="closeModal">&times;</span>
+            </div>
+            <div class="seat-info">
+                <span>Selected: <span id="selectedCount">0</span> seats</span>
+                <span>Price: ₹<span id="totalPrice">0</span></span>
+            </div>
+            <div id="seatGrid" class="seat-grid"></div>
+            <button id="confirmBooking" class="confirm-btn">Confirm Booking</button>
+        </div>
+    </div>
+
+    <!-- Success Popup -->
+    <div id="successPopup" class="success-popup">
+        <div class="success-content">
+            <h3>🎉 Booking Confirmed!</h3>
+            <p>Your seats have been booked successfully.</p>
+            <p>Check your email for confirmation.</p>
+            <button onclick="closeSuccess()">Done</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2024 QuickBus | All Rights Reserved | Safe & Fast Travel</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

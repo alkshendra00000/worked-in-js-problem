@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirm Booking - QuickBus</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <h1>🚌 QuickBus</h1>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="search.html">Search</a></li>
+                <li><a href="food.html">🍕 Food Zone</a></li>
+                <li><a href="login.html">Login</a></li>
+
+            </ul>
+        </nav>
+    </header>
+
+    <main class="booking-main">
+        <!-- Journey Summary -->
+        <section class="summary-card">
+            <h2>📋 Journey Details</h2>
+            <div class="summary-grid">
+                <div class="detail-item">
+                    <span>From:</span>
+                    <span id="bookFrom">Lucknow</span>
+                </div>
+                <div class="detail-item">
+                    <span>To:</span>
+                    <span id="bookTo">Delhi</span>
+                </div>
+                <div class="detail-item">
+                    <span>Date:</span>
+                    <span id="bookDate">15 Oct 2024</span>
+                </div>
+                <div class="detail-item">
+                    <span>Bus:</span>
+                    <span id="busType">Volvo AC</span>
+                </div>
+                <div class="detail-item">
+                    <span>Departure:</span>
+                    <span id="depTime">10:00 AM</span>
+                </div>
+                <div class="detail-item">
+                    <span>Seats:</span>
+                    <span id="selectedSeatsList">-</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Passenger Form -->
+        <section class="form-section">
+            <h2>👤 Passenger Information</h2>
+            <form id="passengerForm" class="booking-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Full Name *</label>
+                        <input type="text" id="fullName" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Age *</label>
+                        <input type="number" id="age" min="1" max="100" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Gender *</label>
+                        <select id="gender" required>
+                            <option value="">Select Gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Mobile Number *</label>
+                        <input type="tel" id="mobile" required>
+                    </div>
+                </div>
+                <div class="form-group full">
+                    <label>Email *</label>
+                    <input type="email" id="email" required>
+                </div>
+            </form>
+        </section>
+
+        <!-- Payment -->
+        <section class="payment-section">
+            <h2>💳 Payment (₹<span id="totalFare">1200</span>)</h2>
+            <div class="payment-methods">
+                <label class="payment-option">
+                    <input type="radio" name="payment" value="upi" checked>
+                    <span>UPI / GPay</span>
+                </label>
+                <label class="payment-option">
+                    <input type="radio" name="payment" value="card">
+                    <span>💳 Credit/Debit Card</span>
+                </label>
+                <label class="payment-option">
+                    <input type="radio" name="payment" value="netbanking">
+                    <span>🏦 Net Banking</span>
+                </label>
+            </div>
+            <label class="terms">
+                <input type="checkbox" id="terms" required>
+                <span>I agree to the <a href="#">Terms & Conditions</a> and <a href="#">Cancellation Policy</a>*</span>
+            </label>
+        </section>
+
+        <!-- Confirm Button -->
+        <div class="confirm-section">
+            <button id="finalConfirm" class="final-confirm-btn" onclick="confirmFinalBooking()">Confirm & Pay Now</button>
+        </div>
+    </main>
+
+    <!-- Success Message -->
+    <div id="finalSuccess" class="success-popup">
+        <div class="success-content">
+            <h3>🎉 Booking Confirmed!</h3>
+            <p id="bookingRef">Booking Reference: #QB123456</p>
+            <p>Check your email/SMS for e-ticket & details.</p>
+            <button onclick="window.location.href='index.html'">Continue Shopping</button>
+            <button onclick="window.print()">Print Ticket</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2024 QuickBus | All Rights Reserved | Safe & Fast Travel</p>
+    </footer>
+
+    <script>
+        // Demo data - in real app from localStorage/sessionStorage
+        function loadBookingData() {
+            // Simulate data from booking modal
+            document.getElementById('selectedSeatsList').textContent = '5, 7, 12';
+        }
+
+        function confirmFinalBooking() {
+            if (document.getElementById('terms').checked) {
+                document.getElementById('finalSuccess').style.display = 'flex';
+            } else {
+                alert('Please accept terms & conditions');
+            }
+        }
+
+        // Load on page ready
+        window.onload = loadBookingData;
+    </script>
+</body>
+</html>

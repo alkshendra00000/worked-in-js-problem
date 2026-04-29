@@ -1,10 +1,18 @@
+<<<<<<< HEAD
 /* Import Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500;700&display=swap');
 
+=======
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+
+/* Reset */
+>>>>>>> 7c6d23b745a3532c9613058644ed3ba3dd7b56bd
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+<<<<<<< HEAD
 }
 
 /* Animations */
@@ -1286,4 +1294,113 @@ footer {
     .booking-form form {
         grid-template-columns: 1fr;
     }
+=======
+    font-family: 'Poppins', sans-serif;
+}
+
+/* BODY */
+body {
+    background: linear-gradient(135deg, #0f172a, #020617);
+    color: white;
+    text-align: center;
+    padding: 30px;
+}
+
+/* HEADING ANIMATION */
+h1 {
+    font-size: 40px;
+    margin-bottom: 10px;
+    background: linear-gradient(90deg, #38bdf8, #22c55e, #facc15);
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: glow 3s infinite;
+}
+
+/* Glow Animation */
+@keyframes glow {
+    0% { filter: brightness(1); }
+    50% { filter: brightness(1.5); }
+    100% { filter: brightness(1); }
+}
+
+/* SUB HEADING */
+h2 {
+    margin-top: 30px;
+    color: #22c55e;
+}
+
+/* PARAGRAPH */
+p {
+    margin-bottom: 20px;
+    color: #cbd5f5;
+}
+
+/* LIST */
+ul {
+    list-style: none;
+}
+
+/* CARD STYLE */
+li {
+    background: rgba(255,255,255,0.05);
+    margin: 12px auto;
+    padding: 15px;
+    border-radius: 12px;
+    width: 260px;
+    backdrop-filter: blur(10px);
+    transition: 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Hover Glow Effect */
+li:hover {
+    transform: scale(1.05);
+    background: rgba(56,189,248,0.2);
+    box-shadow: 0 0 20px rgba(56,189,248,0.5);
+}
+
+/* Animated Border */
+li::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #38bdf8, transparent);
+    top: 0;
+    left: -100%;
+    transition: 0.5s;
+}
+
+li:hover::before {
+    left: 100%;
+}
+
+/* LINKS */
+a {
+    text-decoration: none;
+    color: #38bdf8;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+/* Link Hover */
+a:hover {
+    color: #facc15;
+    text-shadow: 0 0 10px #facc15;
+}
+
+/* BACK BUTTON */
+a[href="index.html"] {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 15px;
+    background: #22c55e;
+    color: black;
+    border-radius: 8px;
+}
+
+a[href="index.html"]:hover {
+    background: #16a34a;
+>>>>>>> 7c6d23b745a3532c9613058644ed3ba3dd7b56bd
 }
