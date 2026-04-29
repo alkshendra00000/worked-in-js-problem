@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxury Hotel Management System</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>Grand Luxe Hotel</h1>
+            <p>Experience Unparalleled Elegance</p>
+        </div>
+        <nav>
+            <button onclick="showSection('home')">Home</button>
+            <button onclick="showSection('rooms')">Luxury Rooms</button>
+            <button onclick="showSection('bookings')">Reservations</button>
+            <button onclick="showSection('admin')">Admin Panel</button>
+            <button onclick="showSection('reports')">Reports</button>
+        </nav>
+    </header>
+    <main>
+        <section id="home" class="section active">
+            <div class="hero">
+                <h2>Welcome to Grand Luxe Hotel</h2>
+                <p>Indulge in the epitome of luxury and comfort. Our deluxe rooms and world-class service await you.</p>
+                <button onclick="showSection('rooms')">Explore Rooms</button>
+            </div>
+            <div class="features">
+                <div class="feature">
+                    <h3>Premium Amenities</h3>
+                    <p>Spa, pool, fine dining, and more</p>
+                </div>
+                <div class="feature">
+                    <h3>24/7 Concierge</h3>
+                    <p>Personalized service at your fingertips</p>
+                </div>
+                <div class="feature">
+                    <h3>Prime Location</h3>
+                    <p>Overlooking the city skyline</p>
+                </div>
+            </div>
+        </section>
+        <section id="rooms" class="section">
+            <h2>Our Luxury Rooms</h2>
+            <div id="roomSections"></div>
+        </section>
+        <section id="bookings" class="section">
+            <h2>Make a Reservation</h2>
+            <div class="booking-form">
+                <h3>Book Your Stay</h3>
+                <form onsubmit="createBooking(event)">
+                    <label>Guest Name: <input type="text" id="guestName" required></label>
+                    <label>Email: <input type="email" id="guestEmail" required></label>
+                    <label>Phone: <input type="tel" id="guestPhone" required></label>
+                    <label>Room Type: <select id="bookingRoomType" required onchange="updateAvailableRooms()">
+                        <option value="">Select Type</option>
+                        <option value="Deluxe Room">Deluxe Room</option>
+                        <option value="Honeymoon Suite">Honeymoon Suite</option>
+                        <option value="Normal Room">Normal Room</option>
+                    </select></label>
+                    <label>Available Rooms: <select id="availableRoomsSelect" required></select></label>
+                    <label>Check-in Date: <input type="date" id="checkInDate" required></label>
+                    <label>Check-out Date: <input type="date" id="checkOutDate" required></label>
+                    <label>Number of Guests: <input type="number" id="numGuests" min="1" required></label>
+                    <label>WhatsApp Number: <input type="tel" id="whatsappNumber" placeholder="+91 or country code"></label>
+                    <p style="font-size:0.9rem; color:#555; margin:0.75rem 0;">WhatsApp confirmation भेजने के लिए local Node backend चलाना ज़रूरी है।</p>
+                    <button type="submit" class="btn-primary">Book Now</button>
+                </form>
+            </div>
+            <div id="bookingConfirmation" style="display:none;">
+                <h3>🎉 Booking Confirmed!</h3>
+                <p id="confirmationDetails"></p>
+                <div style="background: #f8f9fa; padding: 1rem; border-radius: 10px; margin: 1rem 0; border-left: 4px solid #25d366;">
+                    <strong>📱 WhatsApp Confirmation:</strong><br>
+                    अगर आपने WhatsApp नंबर दिया है तो नीचे "WhatsApp पर भेजें" बटन दबाएं।<br>
+                    यह WhatsApp खोलेगा और आपसे manually message भेजने को कहेगा।
+                </div>
+                <button onclick="showReceipt()" class="btn-primary">View Receipt</button>
+                <button onclick="printInvoice()" class="btn-secondary">Print Invoice</button>
+                <button onclick="sendWhatsApp()" class="btn-primary" id="whatsappBtn" style="display:none;">📱 WhatsApp पर भेजें</button>
+            </div>
+        </section>
+        <div id="receiptModal" class="modal" style="display:none;">
+            <div class="modal-content receipt-content">
+                <span class="close" onclick="closeReceipt()">&times;</span>
+                <div class="receipt-header">
+                    <h2>Grand Luxe Hotel</h2>
+                    <p>Experience Unparalleled Elegance</p>
+                    <p>123 Luxury Avenue, City, State 12345</p>
+                    <p>Phone: (123) 456-7890 | Email: info@grandluxehotel.com</p>
+                </div>
+                <div class="receipt-body">
+                    <h3>Booking Receipt</h3>
+                    <div class="receipt-details" id="receiptDetails"></div>
+                </div>
+                <div class="receipt-footer">
+                    <p>Thank you for choosing Grand Luxe Hotel!</p>
+                    <p>We look forward to your stay.</p>
+                    <button onclick="window.print()" class="btn-primary">Print Receipt</button>
+                </div>
+            </div>
+        </div>
+        <section id="admin" class="section">
+            <h2>Admin Dashboard</h2>
+            <div class="admin-settings">
+                <h3>Owner WhatsApp Settings</h3>
+                <p>Enter your WhatsApp number (with country code, e.g. +91xxxxxxxxxx) to receive automatic booking confirmations.</p>
+                <label>Your WhatsApp Number: <input type="tel" id="adminWhatsAppNumber" placeholder="+91xxxxxxxxxx"></label>
+                <button onclick="saveAdminWhatsApp()" class="btn-primary">Save Number</button>
+                <p id="adminWhatsAppStatus" style="margin-top:0.5rem;color:#27ae60;font-weight:600;"></p>
+            </div>
+            <div class="admin-stats">
+                <div class="stat-card">
+                    <h3>Total Rooms</h3>
+                    <span id="totalRooms">0</span>
+                </div>
+                <div class="stat-card">
+                    <h3>Available Rooms</h3>
+                    <span id="availableRooms">0</span>
+                </div>
+                <div class="stat-card">
+                    <h3>Occupied Rooms</h3>
+                    <span id="occupiedRooms">0</span>
+                </div>
+                <div class="stat-card">
+                    <h3>Total Revenue</h3>
+                    <span id="totalRevenue">$0</span>
+                </div>
+            </div>
+            <h3>Recent Bookings</h3>
+            <div id="recentBookings"></div>
+            <h3>Current Guests</h3>
+            <div id="currentGuests"></div>
+        </section>
+        <section id="reports" class="section">
+            <h2>Reports & Analytics</h2>
+            <div class="report-filters">
+                <label>Start Date: <input type="date" id="reportStartDate"></label>
+                <label>End Date: <input type="date" id="reportEndDate"></label>
+                <button onclick="generateReport()" class="btn-primary">Generate Report</button>
+            </div>
+            <div id="reportResults"></div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2026 Grand Luxe Hotel. All rights reserved.</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
