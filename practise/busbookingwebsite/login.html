@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - QuickBus</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <h1>🚌 QuickBus</h1>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="search.html">Search Buses</a></li>
+                <li><a href="food.html">🍕 Food Zone</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="login-container" style="margin-top: 100px;">
+    <h2>Login</h2>
+    <form onsubmit="loginUser(event)">
+    <input type="email" placeholder="Enter Email" required>
+    <input type="password" placeholder="Enter Password" required>
+    <button type="submit">Login</button>
+</form>
+    
+</div>
+   <script>
+function loginUser(event){
+    event.preventDefault();
+
+    let email = document.querySelector("input[type='email']").value;
+    let pass = document.querySelector("input[type='password']").value;
+
+    if(email === "sagardwivedi888@gmail.com" && pass === "1234"){
+        window.location.href = "index.html";
+    } else {
+        alert("Wrong Email or Password");
+    }
+}
+</script>
+
+</body>
+</html>

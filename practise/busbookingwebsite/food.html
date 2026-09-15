@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Zone - QuickBus</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <h1>🚌 QuickBus</h1>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="search.html">Search Buses</a></li>
+                <li><a href="booking.html">Booking</a></li>
+                <li><a href="food.html">🍕 Food Zone</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="food-main">
+        <!-- Page Title -->
+        <section class="page-title">
+            <h2>🍕 Food Zone</h2>
+            <p>Delicious meals for your journey. Pre-order and enjoy!</p>
+        </section>
+
+        <!-- Cart Summary -->
+        <section class="cart-summary">
+            <h3>🛒 Cart (<span id="cartCount">0</span> items)</h3>
+            <p>Total: ₹<span id="cartTotal">0</span></p>
+            <button id="viewCartBtn" class="cta-btn" onclick="openCartModal()">View Cart</button>
+        </section>
+
+        <!-- Food List -->
+        <section id="foodListSection" class="food-list">
+            <h3>Popular Menu Items</h3>
+            
+            <!-- Food 1 -->
+            <article class="food-card" data-food="0">
+                <div class="food-header">
+                    <h4>🍛 Chicken Biryani</h4>
+                    <span class="food-time">Ready in 10min</span>
+                </div>
+                <p class="food-desc">Spicy basmati rice with chicken</p>
+                <p class="price">₹250 <span>per plate</span></p>
+                <button class="add-cart-btn">Add to Cart</button>
+            </article>
+
+            <!-- Food 2 -->
+            <article class="food-card" data-food="1">
+                <div class="food-header">
+                    <h4>🍕 Margherita Pizza</h4>
+                    <span class="food-time">Ready in 15min</span>
+                </div>
+                <p class="food-desc">Fresh cheese & tomato pizza</p>
+                <p class="price">₹350 <span>per slice</span></p>
+                <button class="add-cart-btn">Add to Cart</button>
+            </article>
+
+            <!-- Food 3 -->
+            <article class="food-card" data-food="2">
+                <div class="food-header">
+                    <h4>🥪 Club Sandwich</h4>
+                    <span class="food-time">Ready in 5min</span>
+                </div>
+                <p class="food-desc">Grilled chicken & veggies</p>
+                <p class="price">₹150 <span>per piece</span></p>
+                <button class="add-cart-btn">Add to Cart</button>
+            </article>
+
+            <!-- Food 4 -->
+            <article class="food-card" data-food="3">
+                <div class="food-header">
+                    <h4>🥤 Fresh Juice</h4>
+                    <span class="food-time">Ready in 2min</span>
+                </div>
+                <p class="food-desc">Orange & carrot mix</p>
+                <p class="price">₹80 <span>per glass</span></p>
+                <button class="add-cart-btn">Add to Cart</button>
+            </article>
+
+            <!-- Food 5 -->
+            <article class="food-card" data-food="4">
+                <div class="food-header">
+                    <h4>🍦 Ice Cream</h4>
+                    <span class="food-time">Ready in 1min</span>
+                </div>
+                <p class="food-desc">Vanilla with toppings</p>
+                <p class="price">₹100 <span>per scoop</span></p>
+                <button class="add-cart-btn">Add to Cart</button>
+            </article>
+
+            <!-- Food 6 -->
+            <article class="food-card" data-food="5">
+                <div class="food-header">
+                    <h4>🥗 Salad Bowl</h4>
+                    <span class="food-time">Ready in 8min</span>
+                </div>
+                <p class="food-desc">Fresh veggies & grilled paneer</p>
+                <p class="price">₹200 <span>per bowl</span></p>
+                <button class="add-cart-btn">Add to Cart</button>
+            </article>
+        </section>
+    </main>
+
+    <!-- Cart Modal -->
+    <div id="cartModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>🛒 Your Cart</h3>
+                <span class="close-btn" id="closeCartModal">&times;</span>
+            </div>
+            <div id="cartItems"></div>
+            <div class="cart-total">
+                <h4>Total: ₹<span id="modalCartTotal">0</span></h4>
+                <button id="confirmOrder" class="confirm-btn">Confirm Order</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Popup -->
+    <div id="foodSuccess" class="success-popup">
+        <div class="success-content">
+            <h3>✅ Order Placed!</h3>
+            <p>Your food order has been confirmed for your journey.</p>
+            <button onclick="closeFoodSuccess()">Done</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2024 QuickBus | Food Zone powered by QuickEats</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Food Zone specific script (will be extended in script.js)
+        let foodCart = JSON.parse(localStorage.getItem('foodCart')) || [];
+
+        function updateCartUI() {
+            document.getElementById('cartCount').textContent = foodCart.reduce((sum, item) => sum + item.qty, 0);
+            document.getElementById('cartTotal').textContent = foodCart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+        }
+
+        // Load cart on page load
+        document.addEventListener('DOMContentLoaded', updateCartUI);
+    </script>
+</body>
+</html>
