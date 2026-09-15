@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; base-uri 'none'; form-action 'none'; object-src 'none';">
 <title>WhatsApp Style Chat</title>
 <link rel="stylesheet" href="style.css">
 </head>
@@ -20,11 +22,11 @@
         </div>
     </div>
 
-    <div class="chat-messages" id="chatMessages"></div>
+    <div class="chat-messages" id="chatMessages" aria-live="polite" aria-label="Chat messages"></div>
 
     <div class="chat-input">
-        <input type="text" id="messageInput" placeholder="Type a message">
-        <button id="sendBtn">Send</button>
+        <input type="text" id="messageInput" placeholder="Type a message" maxlength="500" autocomplete="off" aria-label="Message">
+        <button id="sendBtn" type="button">Send</button>
     </div>
 
 </div>
